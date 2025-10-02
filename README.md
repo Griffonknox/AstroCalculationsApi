@@ -28,7 +28,7 @@ Base URL: `/api/v1/`
   "Date": "2025-09-26",
   "MoonPhase": "Waxing Crescent"
 }
-
+```
 
 ### 2. Stefan-Boltzmann Stellar Radius
 
