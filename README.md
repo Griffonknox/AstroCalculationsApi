@@ -48,7 +48,7 @@ Base URL: `/api/v1/`
   "Temperature": 5778,
   "RadiusMeters": 6.96e8
 }
-
+```
 
 ## Running Locally
 
