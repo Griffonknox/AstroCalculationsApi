@@ -32,21 +32,57 @@ Base URL: `/api/v1/`
 
 ### 2. Stefan-Boltzmann Stellar Radius
 
-**GET** /api/v1/stars/stephanboltzmann?luminosity={L}&temperature={T}
+**SUMMARY** - Calculates the radius of a star using the Stefan–Boltzmann law.
 
-**Query Parameters and Units: **
+**POST** /api/v1/stellar/radius
+
+**Query Body and Units: **
 - luminosity (required, >0) – Watts
 - temperature (required, >0) – Kelvin
 
-**Example Request URL:** - https://localhost:5001/api/v1/stars/stephanboltzmann?luminosity=3.828e26&temperature=5778
+**Example Request Body:**
+```json
+{
+  "luminosity": 3.828e26,
+  "temperature": 5778
+}
+```
 
 **Example Response:**
-
 ```json
 {
   "Luminosity": 3.828e26,
   "Temperature": 5778,
   "RadiusMeters": 6.96e8
+}
+```
+
+
+### 3. Stellar Lifetime
+
+**SUMMARY** - Estimates the main-sequence lifetime of a star based on its mass and optional luminosity.
+
+**POST** /api/v1/stellar/lifetime
+
+**Request Body and Units: **
+- massSolar (required, >0) – Solar masses (M☉)
+- luminositySolar (optional, >0) – Solar luminosities (L☉)
+
+**Example Request Body:**
+```json
+{
+  "massSolar": 2.0,
+  "luminositySolar": null
+}
+```
+
+**Example Response:**
+```json
+{
+	"lifetime": {
+		"value": 884194755,
+		"unit": "Years"
+	}
 }
 ```
 

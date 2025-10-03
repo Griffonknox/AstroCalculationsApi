@@ -1,6 +1,6 @@
 ﻿namespace AstroCalculationsApi.Models.Stellar
 {
-    public class StefanBoltzmannRequest
+    public class StellarRadiusRequest
     {
         /// <summary>
         /// Luminosity of the star in watts (W) or solar luminosities depending on your API convention.
