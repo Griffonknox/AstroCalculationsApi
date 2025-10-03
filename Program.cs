@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using AstroCalculationsApi.Managers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// ✅ Add HTTP logging service
+// Add HTTP logging service
 builder.Services.AddHttpLogging(logging =>
 {
     logging.LoggingFields = HttpLoggingFields.RequestPath | HttpLoggingFields.RequestMethod;
 });
 
-// ✅ Add API versioning
+// Add API versioning
 builder.Services.AddApiVersioning(options =>
 {
     options.DefaultApiVersion = new ApiVersion(1, 0); // v1.0
@@ -24,6 +24,9 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true; // adds "api-supported-versions" header
     options.ApiVersionReader = new UrlSegmentApiVersionReader(); // reads from URL segment /v1/
 });
+
+// ADD DI
+builder.Services.AddSingleton<StellarManager>();
 
 // Optional: Add versioned API explorer (for Swagger to show version info)
 builder.Services.AddVersionedApiExplorer(options =>
