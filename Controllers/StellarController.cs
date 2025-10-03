@@ -25,13 +25,29 @@ namespace AstroCalculationsApi.Controllers
         /// <remarks>
         /// Example request:
         ///
-        /// POST /api/v1/stellar/radius
+        /// POST /api/v1/stellar/stellarRadius
         /// Content-Type: application/json
         ///
         /// {
         ///   "luminosity": 3.828e26,
         ///   "temperature": 5778
         /// }
+        /// 
+        /// Example Response:
+        /// {
+        //  "luminosity": {
+        //    "value": 1,
+        //    "unit": "Watts"
+        //  },
+        //  "temperature": {
+        //    "value": 4,
+        //    "unit": "Kelvin"
+        //  },
+        //  "radius": {
+        //    "value": 74.04047853822483,
+        //    "unit": "Meters"
+        //  }
+        //  }
         /// </remarks>
         /// <response code="200">Returns the calculated stellar radius</response>
         /// <response code="400">If the input is invalid</response>

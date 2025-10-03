@@ -43,17 +43,26 @@ Base URL: `/api/v1/`
 **Example Request Body:**
 ```json
 {
-  "luminosity": 3.828e26,
-  "temperature": 5778
+    "luminosity": 3.828e26,
+    "temperature": 5778
 }
 ```
 
 **Example Response:**
 ```json
 {
-  "Luminosity": 3.828e26,
-  "Temperature": 5778,
-  "RadiusMeters": 6.96e8
+  "luminosity": {
+    "value": 1,
+    "unit": "Watts"
+  },
+  "temperature": {
+    "value": 4,
+    "unit": "Kelvin"
+  },
+  "radius": {
+    "value": 74.04047853822483,
+    "unit": "Meters"
+  }
 }
 ```
 
@@ -79,7 +88,8 @@ Base URL: `/api/v1/`
 **Example Response:**
 ```json
 {
-	"lifetime": {
+	"lifetime": 
+	{
 		"value": 884194755,
 		"unit": "Years"
 	}
