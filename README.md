@@ -14,23 +14,27 @@ Base URL: `/api/v1/`
 
 ### 1. Moon Phase
 
-**GET** `/api/v1/SolarSystemAstronomy/moonphase?date=YYYY-MM-DD`
+**POST** `/api/v1/SolarSystem/moonphase`
 
-**Query Parameters:**
+**Query Body:**
 - `date` (required) – date to calculate the moon phase
 
-**Example Request URL:** - https://localhost:5001/api/v1/localastronomy/moonphase?date=2025-09-26
-
-**Example Response:**
-
+**Example Request Body:**
 ```json
 {
-  "Date": "2025-09-26",
-  "MoonPhase": "Waxing Crescent"
+    "requestDate": "2025-10-04T14:09:32.618Z"
 }
 ```
 
-### 2. Stefan-Boltzmann Stellar Radius
+**Example Response:**
+```json
+{
+  "requestDate": "10/4/2025",
+  "moonPhase": "Full Moon"
+}
+```
+
+### 2. Stellar Radius
 
 **SUMMARY** - Calculates the radius of a star using the Stefan–Boltzmann law.
 

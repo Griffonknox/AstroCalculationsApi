@@ -35,19 +35,19 @@ namespace AstroCalculationsApi.Controllers
         /// 
         /// Example Response:
         /// {
-        //  "luminosity": {
-        //    "value": 1,
-        //    "unit": "Watts"
-        //  },
-        //  "temperature": {
-        //    "value": 4,
-        //    "unit": "Kelvin"
-        //  },
-        //  "radius": {
-        //    "value": 74.04047853822483,
-        //    "unit": "Meters"
-        //  }
-        //  }
+        /// "luminosity": {
+        ///     "value": 1,
+        ///     "unit": "Watts"
+        ///     },
+        /// "temperature": {
+        ///     "value": 4,
+        ///     "unit": "Kelvin" 
+        ///     },
+        ///  "radius": {
+        ///     "value": 74.04047853822483,
+        ///     "unit": "Meters"
+        ///     }
+        ///  }
         /// </remarks>
         /// <response code="200">Returns the calculated stellar radius</response>
         /// <response code="400">If the input is invalid</response>

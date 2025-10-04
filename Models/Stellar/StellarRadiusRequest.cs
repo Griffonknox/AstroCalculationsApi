@@ -3,7 +3,7 @@
     public class StellarRadiusRequest
     {
         /// <summary>
-        /// Luminosity of the star in watts (W) or solar luminosities depending on your API convention.
+        /// Luminosity of the star in watts (W)
         /// </summary>
         public double Luminosity { get; set; }
 

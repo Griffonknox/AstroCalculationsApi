@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using AstroCalculationsApi.Models.SolarSystem;
 
 namespace AstroCalculationsApi.Controllers
 {
     [ApiController]
-    [ApiVersion("1.0")] // ✅ mark this controller as v1
+    [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class SolarSystemController : ControllerBase
     {
@@ -13,19 +14,37 @@ namespace AstroCalculationsApi.Controllers
         {
             _logger = logger;
         }
-        // Example: GET /api/v1/localastronomy/moonphase?date=2025-09-26
-        [HttpGet("moonphase")]
-        public IActionResult GetMoonPhase([FromQuery] DateTime date)
+
+        /// <summary>
+        /// Determines MoonPhase by given requested date.
+        /// </summary>
+        /// <remarks>
+        /// Example request:
+        ///
+        /// POST /api/v1/solarsystem/moonphase
+        /// Content-Type: application/json
+        ///
+        /// {
+        ///   "requestDate": "2025-10-04T14:09:32.618Z"
+        /// }
+        ///
+        /// Example response:
+        /// {
+        ///     "requestDate": "10/4/2025",
+        ///     "moonPhase": "Full Moon"
+        /// }
+        /// </remarks>
+        /// <response code="200">Returns the moonphase along with requested date</response>
+        /// <response code="400">If the input is invalid (e.g., invalid date)</response>
+        [HttpPost("moonphase")]
+        public IActionResult GetMoonPhase([FromBody] MoonPhaseRequest moonPhaseRequest)
         {
-            // Validate input
-            if (date == default)
-            {
-                return BadRequest("Invalid date supplied.");
-            }
+            _logger.LogInformation("MoonPhase endpoint hit with date: {Date}", moonPhaseRequest.RequestDate.ToShortDateString());
 
-            _logger.LogInformation("MoonPhase endpoint hit with date: {Date}", date);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            string phase = (date.Day % 8) switch
+            string phase = (moonPhaseRequest.RequestDate.Day % 8) switch
             {
                 0 => "New Moon",
                 1 => "Waxing Crescent",
@@ -37,8 +56,12 @@ namespace AstroCalculationsApi.Controllers
                 7 => "Waning Crescent",
                 _ => "Unknown"
             };
-
-            return Ok(new { Date = date.ToShortDateString(), MoonPhase = phase });
+            var result = new MoonPhaseResult
+            {
+                RequestDate = moonPhaseRequest.RequestDate.ToShortDateString(),
+                MoonPhase = phase
+            };
+            return Ok(result);
         }
     }
 }
