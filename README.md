@@ -1,6 +1,6 @@
 ﻿# AstroCalculationsApi
 
-A C# ASP.NET Core Web API for basic astronomy calculations.
+A C# ASP.NET Core Web API for complex astronomy calculations.
 
 ## API Version
 
