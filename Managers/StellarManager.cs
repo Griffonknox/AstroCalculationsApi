@@ -46,5 +46,22 @@ namespace AstroCalculationsApi.Managers
                 }
             };
         }
+
+        public StellarTemperatureResult CalculateTemperature(StellarTemperatureRequest request)
+        {
+            if (request.Luminosity <= 0)
+                throw new ArgumentException("Luminosity must be greater than zero.");
+            if (request.Radius <= 0)
+                throw new ArgumentException("Radius must be greater than zero.");
+
+            double temperature = Math.Pow(request.Luminosity / (4 * Math.PI * Sigma * Math.Pow(request.Radius, 2)), 0.25);
+
+            return new StellarTemperatureResult
+            {
+                Luminosity = new Quantity { Value = request.Luminosity, Unit = PhysicalUnit.Watts },
+                Radius = new Quantity { Value = request.Radius, Unit = PhysicalUnit.Meters },
+                Temperature = new Quantity { Value = temperature, Unit = PhysicalUnit.Kelvin }
+            };
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace AstroCalculationsApi.Controllers
         /// <remarks>
         /// Example request:
         ///
-        /// POST /api/v1/stellar/stellarRadius
+        /// POST /api/v1/stellar/radius
         /// Content-Type: application/json
         ///
         /// {
@@ -103,6 +103,52 @@ namespace AstroCalculationsApi.Controllers
             try
             {
                 var result = _stellarManager.CalculateLifetime(request);
+                return Ok(result);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        /// <summary>
+        /// Calculates the Temperature of a star using the Stefan–Boltzmann law.
+        /// </summary>
+        /// <remarks>
+        /// Example request:
+        ///
+        /// POST /api/v1/stellar/temperature
+        /// Content-Type: application/json
+        ///
+        /// {
+        ///   "luminosity": 3.828e26,
+        ///   "radius": 74.04047853822483
+        /// }
+        /// 
+        /// Example Response:
+        /// {
+        /// "luminosity": {
+        ///     "value": 1,
+        ///     "unit": "Watts"
+        ///     },
+        /// "temperature": {
+        ///     "value": 4,
+        ///     "unit": "Kelvin" 
+        ///     },
+        ///  "radius": {
+        ///     "value": 74.04047853822483,
+        ///     "unit": "Meters"
+        ///     }
+        ///  }
+        /// </remarks>
+        /// <response code="200">Returns the calculated stellar temperature</response>
+        /// <response code="400">If the input is invalid</response>
+        [HttpPost("temperature")]
+        public IActionResult CalculateTemperature([FromBody] StellarTemperatureRequest request)
+        {
+            try
+            {
+                var result = _stellarManager.CalculateTemperature(request);
                 return Ok(result);
             }
             catch (ArgumentException ex)

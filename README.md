@@ -99,6 +99,43 @@ Base URL: `/api/v1/`
 }
 ```
 
+
+### 4. Stellar Temperature
+
+**SUMMARY** - Calculates the temperature of a star using the Stefan–Boltzmann law.
+
+**POST** `/api/v1/stellar/temperature`
+
+**Query Body and Units: **
+- luminosity (required, >0) – Watts
+- radius (required, >0) – meters
+
+**Example Request Body:**
+```json
+{
+    "luminosity": 3.828e26,
+    "radius": 74.04047853822483
+}
+```
+
+**Example Response:**
+```json
+{
+  "luminosity": {
+    "value": 1,
+    "unit": "Watts"
+  },
+  "temperature": {
+    "value": 4,
+    "unit": "Kelvin"
+  },
+  "radius": {
+    "value": 74.04047853822483,
+    "unit": "Meters"
+  }
+}
+```
+
 ## Running Locally
 
 **Clone the repository:**
