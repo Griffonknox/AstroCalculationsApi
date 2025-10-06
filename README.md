@@ -38,7 +38,7 @@ Base URL: `/api/v1/`
 
 **SUMMARY** - Calculates the radius of a star using the Stefan–Boltzmann law.
 
-**POST** '/api/v1/stellar/radius'
+**POST** `/api/v1/stellar/radius`
 
 **Query Body and Units: **
 - luminosity (required, >0) – Watts
@@ -75,7 +75,7 @@ Base URL: `/api/v1/`
 
 **SUMMARY** - Estimates the main-sequence lifetime of a star based on its mass and optional luminosity.
 
-**POST** '/api/v1/stellar/lifetime'
+**POST** `/api/v1/stellar/lifetime`
 
 **Request Body and Units: **
 - massSolar (required, >0) – Solar masses (M☉)
@@ -92,8 +92,7 @@ Base URL: `/api/v1/`
 **Example Response:**
 ```json
 {
-	"lifetime": 
-	{
+	"lifetime": {
 		"value": 884194755,
 		"unit": "Years"
 	}
